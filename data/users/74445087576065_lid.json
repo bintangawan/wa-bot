@@ -1,0 +1,59 @@
+{
+  "chatId": "74445087576065@lid",
+  "contactName": "Bintang </>",
+  "createdAt": "2026-05-29T03:27:46.842Z",
+  "lastSeenAt": "2026-05-29T03:28:48.060Z",
+  "state": {
+    "hasSeenMenu": true,
+    "expectsMenuSelection": true,
+    "lastMenuShownAt": "2026-05-29T03:28:48.028Z",
+    "lastSelectedMenuNumber": 1,
+    "lastSelectedTemplateId": "jam-operasional"
+  },
+  "messages": [
+    {
+      "messageId": "false_74445087576065@lid_AC0CD35B8BA9319998630D619DE2537F",
+      "text": "Halo",
+      "normalizedText": "halo",
+      "receivedAt": "2026-05-29T03:27:47.220Z",
+      "whatsappTimestamp": 1780025264,
+      "selectedTemplateId": null,
+      "selectedMenuNumber": null,
+      "replyText": "Halo Bintang!\nAku siap bantu lewat daftar pertanyaan berikut:\n\n1. Jam operasional\n\nBalas dengan angka pilihan, misalnya 1.\nKetik MENU kapan saja kalau mau lihat daftarnya lagi.",
+      "status": "welcome_menu"
+    },
+    {
+      "messageId": "false_74445087576065@lid_ACA1A982ABD5621B6C085DE8D7B22284",
+      "text": "1",
+      "normalizedText": "1",
+      "receivedAt": "2026-05-29T03:28:14.009Z",
+      "whatsappTimestamp": 1780025293,
+      "selectedTemplateId": "jam-operasional",
+      "selectedMenuNumber": 1,
+      "replyText": "Pilihan 1: Jam operasional\n\nJam operasional kami Senin sampai Jumat, pukul 09.00 sampai 17.00 WIB.\n\nKalau masih mau cek topik lain, balas angka lain atau ketik MENU.",
+      "status": "selected"
+    },
+    {
+      "messageId": "false_74445087576065@lid_AC3A5F756EB3FD627E423ADA8A0C517F",
+      "text": "meny",
+      "normalizedText": "meny",
+      "receivedAt": "2026-05-29T03:28:45.157Z",
+      "whatsappTimestamp": 1780025324,
+      "selectedTemplateId": null,
+      "selectedMenuNumber": null,
+      "replyText": "Supaya lebih cepat, balas dengan angka dari daftar berikut ya.\n\nBerikut daftar pertanyaan yang tersedia:\n\n1. Jam operasional\n\nBalas dengan angka pilihan, misalnya 1.",
+      "status": "menu_redirect"
+    },
+    {
+      "messageId": "false_74445087576065@lid_AC7B5340386F4026965761571523D8D7",
+      "text": "menu",
+      "normalizedText": "menu",
+      "receivedAt": "2026-05-29T03:28:48.060Z",
+      "whatsappTimestamp": 1780025327,
+      "selectedTemplateId": null,
+      "selectedMenuNumber": null,
+      "replyText": "Berikut daftar pertanyaan yang tersedia:\n\n1. Jam operasional\n\nBalas dengan angka pilihan, misalnya 1.",
+      "status": "menu"
+    }
+  ]
+}
