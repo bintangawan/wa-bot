@@ -1,0 +1,68 @@
+{
+  "chatId": "48795257700384@lid",
+  "contactName": "Christyyyyy",
+  "createdAt": "2026-05-30T03:24:37.037Z",
+  "lastSeenAt": "2026-05-30T03:24:37.206Z",
+  "state": {
+    "hasSeenMenu": true,
+    "currentPath": [],
+    "lastMenuShownAt": "2026-05-30T03:24:37.168Z",
+    "lastSelectedMenuNumber": 2,
+    "lastSelectedNodeId": "pemesanan"
+  },
+  "messages": [
+    {
+      "messageId": "false_48795257700384@lid_AC0AC9DB730E73F4EF4EE6F78592EDE9",
+      "text": "3",
+      "normalizedText": "3",
+      "receivedAt": "2026-05-30T03:24:37.120Z",
+      "whatsappTimestamp": 1780046613,
+      "selectedNodeId": null,
+      "selectedMenuNumber": null,
+      "activePath": [],
+      "activePathLabels": [],
+      "selectedPath": [],
+      "selectedPathLabels": [],
+      "replyText": "Halo Christyyyyy!\nSilakan pilih menu utama yang ingin kamu lihat:\n\n1. Informasi Umum\n2. Pemesanan\n\nBalas dengan angka pilihan.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "welcome_menu"
+    },
+    {
+      "messageId": "false_48795257700384@lid_AC3DCC07806B4073227E940B8ABBA078",
+      "text": "2",
+      "normalizedText": "2",
+      "receivedAt": "2026-05-30T03:24:37.156Z",
+      "whatsappTimestamp": 1780046620,
+      "selectedNodeId": "pemesanan",
+      "selectedMenuNumber": 2,
+      "activePath": [
+        1
+      ],
+      "activePathLabels": [
+        "Pemesanan"
+      ],
+      "selectedPath": [
+        1
+      ],
+      "selectedPathLabels": [
+        "Pemesanan"
+      ],
+      "replyText": "Kamu sedang berada di: Pemesanan\n\n1. Cara Order\n2. Pembayaran\n0. Kembali ke menu utama\n\nBalas dengan angka pilihan, atau ketik 0 untuk kembali ke menu utama.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "submenu"
+    },
+    {
+      "messageId": "false_48795257700384@lid_AC0E1869528DF9BA94D85C28A91F7F4F",
+      "text": "0",
+      "normalizedText": "0",
+      "receivedAt": "2026-05-30T03:24:37.206Z",
+      "whatsappTimestamp": 1780046670,
+      "selectedNodeId": null,
+      "selectedMenuNumber": 0,
+      "activePath": [],
+      "activePathLabels": [],
+      "selectedPath": [],
+      "selectedPathLabels": [],
+      "replyText": "Siap, kamu sudah kembali ke menu utama.\n\nSilakan pilih menu utama yang tersedia:\n\n1. Informasi Umum\n2. Pemesanan\n\nBalas dengan angka pilihan.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "back_to_main"
+    }
+  ]
+}

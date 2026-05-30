@@ -10,13 +10,15 @@ const USERS_DIR = path.join(DATA_DIR, 'users');
 const SESSIONS_DIR = path.join(ROOT_DIR, 'sessions');
 const TEMPLATE_FILE = path.join(QUESTIONS_DIR, 'templates.json');
 const UNMATCHED_FILE = path.join(DATA_DIR, 'unmatched-questions.json');
+
 const DEFAULT_USER_STATE = {
   hasSeenMenu: false,
-  expectsMenuSelection: true,
+  currentPath: [],
   lastMenuShownAt: null,
   lastSelectedMenuNumber: null,
-  lastSelectedTemplateId: null,
+  lastSelectedNodeId: null,
 };
+
 const MENU_KEYWORDS = new Set([
   'menu',
   'daftar',
@@ -33,15 +35,71 @@ const MENU_KEYWORDS = new Set([
 
 const DEFAULT_TEMPLATES = [
   {
-    id: 'jam-operasional',
-    label: 'Jam operasional',
-    question: 'Jam operasional toko kapan?',
-    answer: 'Jam operasional kami Senin sampai Jumat, pukul 09.00 sampai 17.00 WIB.',
+    id: 'informasi-umum',
+    label: 'Informasi Umum',
+    children: [
+      {
+        id: 'jam-operasional',
+        label: 'Jam Operasional',
+        intro: 'Pilih jenis jadwal yang ingin kamu lihat.',
+        children: [
+          {
+            id: 'jam-hari-kerja',
+            label: 'Hari Kerja',
+            answer:
+              'Jam operasional kami untuk hari kerja adalah Senin sampai Jumat, pukul 09.00 sampai 17.00 WIB.',
+          },
+          {
+            id: 'jam-akhir-pekan',
+            label: 'Akhir Pekan',
+            answer:
+              'Untuk saat ini layanan akhir pekan masih tutup. Kalau ada perubahan jadwal, kami akan update lagi ya.',
+          },
+        ],
+      },
+      {
+        id: 'lokasi-toko',
+        label: 'Lokasi Toko',
+        answer:
+          'Toko kami berada di Jalan Contoh No. 123, Jakarta. Kalau perlu titik maps, nanti tinggal dibagikan oleh admin.',
+      },
+    ],
+  },
+  {
+    id: 'pemesanan',
+    label: 'Pemesanan',
+    children: [
+      {
+        id: 'cara-order',
+        label: 'Cara Order',
+        intro: 'Pilih metode order yang paling sesuai.',
+        children: [
+          {
+            id: 'order-via-whatsapp',
+            label: 'Order via WhatsApp',
+            answer:
+              'Untuk order via WhatsApp, kirim nama produk, jumlah pesanan, dan alamat lengkap. Setelah itu admin akan bantu proses pesanan kamu.',
+          },
+          {
+            id: 'order-ke-toko',
+            label: 'Order ke Toko Langsung',
+            answer:
+              'Kalau mau order langsung, kamu bisa datang ke toko pada jam operasional. Tim kami akan bantu cek stok dan proses pembelian.',
+          },
+        ],
+      },
+      {
+        id: 'pembayaran',
+        label: 'Pembayaran',
+        answer:
+          'Pembayaran bisa dilakukan melalui transfer bank atau metode lain yang diinformasikan admin saat pesanan diproses.',
+      },
+    ],
   },
 ];
 
 const EMPTY_TEMPLATE_REPLY =
-  'Daftar pertanyaan masih kosong. Isi file questions/templates.json dulu ya, supaya bot bisa mengirim menu.';
+  'Menu pertanyaan masih kosong. Isi file questions/templates.json dulu ya, supaya bot bisa menampilkan daftar menu.';
 const TEMPLATE_ERROR_REPLY =
   'File template sedang bermasalah. Cek questions/templates.json dulu ya.';
 
@@ -82,72 +140,224 @@ function getFirstName(name = '') {
   return name.trim().split(/\s+/)[0] || '';
 }
 
-function getTemplateLabel(template) {
-  if (typeof template.label === 'string' && template.label.trim()) {
-    return template.label.trim();
+function getNodeLabel(node) {
+  if (typeof node?.label === 'string' && node.label.trim()) {
+    return node.label.trim();
   }
 
-  return template.question.trim();
+  if (typeof node?.question === 'string' && node.question.trim()) {
+    return node.question.trim();
+  }
+
+  return 'Tanpa Judul';
 }
 
-function formatMenuList(templates) {
-  return templates
-    .map((template, index) => `${index + 1}. ${getTemplateLabel(template)}`)
-    .join('\n');
+function normalizeMenuTree(rawItems) {
+  if (!Array.isArray(rawItems)) {
+    return [];
+  }
+
+  return rawItems
+    .map((item, index) => {
+      if (!item || typeof item !== 'object') {
+        return null;
+      }
+
+      const label = getNodeLabel(item);
+      const children = normalizeMenuTree(item.children);
+      const rawAnswer =
+        typeof item.answer === 'string' && item.answer.trim()
+          ? item.answer.trim()
+          : null;
+      const intro =
+        typeof item.intro === 'string' && item.intro.trim()
+          ? item.intro.trim()
+          : children.length > 0
+            ? rawAnswer
+            : null;
+      const answer = children.length === 0 ? rawAnswer : null;
+
+      if (!label || (!answer && children.length === 0)) {
+        return null;
+      }
+
+      return {
+        id: item.id || `menu-${index + 1}`,
+        label,
+        intro,
+        answer,
+        order: Number.isInteger(item.order) ? item.order : index + 1,
+        children,
+      };
+    })
+    .filter(Boolean)
+    .sort((firstItem, secondItem) => firstItem.order - secondItem.order);
 }
 
-function buildMenuMessage({ contactName, templates, variant = 'menu' }) {
+function createUserFilePath(chatId) {
+  return path.join(USERS_DIR, `${sanitizeFileName(chatId)}.json`);
+}
+
+function createDefaultUserRecord(chatId, contactName) {
+  const now = new Date().toISOString();
+
+  return {
+    chatId,
+    contactName: contactName || null,
+    createdAt: now,
+    lastSeenAt: now,
+    state: { ...DEFAULT_USER_STATE },
+    messages: [],
+  };
+}
+
+function sanitizePath(tree, rawPath) {
+  if (!Array.isArray(rawPath)) {
+    return [];
+  }
+
+  const safePath = [];
+  let currentItems = tree;
+
+  for (const rawIndex of rawPath) {
+    if (!Number.isInteger(rawIndex) || rawIndex < 0 || rawIndex >= currentItems.length) {
+      return [];
+    }
+
+    const currentNode = currentItems[rawIndex];
+
+    if (!currentNode || !Array.isArray(currentNode.children) || currentNode.children.length === 0) {
+      return [];
+    }
+
+    safePath.push(rawIndex);
+    currentItems = currentNode.children;
+  }
+
+  return safePath;
+}
+
+function getNodeByPath(tree, rawPath) {
+  if (!Array.isArray(rawPath) || rawPath.length === 0) {
+    return null;
+  }
+
+  let currentItems = tree;
+  let currentNode = null;
+
+  for (const rawIndex of rawPath) {
+    if (!Number.isInteger(rawIndex) || rawIndex < 0 || rawIndex >= currentItems.length) {
+      return null;
+    }
+
+    currentNode = currentItems[rawIndex];
+    currentItems = currentNode.children || [];
+  }
+
+  return currentNode;
+}
+
+function getMenuItems(tree, rawPath) {
+  const safePath = sanitizePath(tree, rawPath);
+
+  if (safePath.length === 0) {
+    return tree;
+  }
+
+  return getNodeByPath(tree, safePath)?.children || [];
+}
+
+function getPathLabels(tree, rawPath) {
+  if (!Array.isArray(rawPath)) {
+    return [];
+  }
+
+  const labels = [];
+  let currentItems = tree;
+
+  for (const rawIndex of rawPath) {
+    if (!Number.isInteger(rawIndex) || rawIndex < 0 || rawIndex >= currentItems.length) {
+      return [];
+    }
+
+    const currentNode = currentItems[rawIndex];
+    labels.push(getNodeLabel(currentNode));
+    currentItems = currentNode.children || [];
+  }
+
+  return labels;
+}
+
+function formatMenuList(items, includeBackToMain) {
+  const lines = items.map((item, index) => `${index + 1}. ${getNodeLabel(item)}`);
+
+  if (includeBackToMain) {
+    lines.push('0. Kembali ke menu utama');
+  }
+
+  return lines.join('\n');
+}
+
+function buildMenuMessage({ contactName, tree, path = [], variant = 'menu', leadText = null }) {
+  const safePath = sanitizePath(tree, path);
+  const currentNode = getNodeByPath(tree, safePath);
+  const items = getMenuItems(tree, safePath);
+  const depth = safePath.length;
+  const breadcrumb = getPathLabels(tree, safePath).join(' > ');
   const firstName = getFirstName(contactName);
-  const menuList = formatMenuList(templates);
+  const lines = [];
+
+  if (leadText) {
+    lines.push(leadText);
+    lines.push('');
+  }
 
   if (variant === 'welcome') {
-    const greeting = firstName ? `Halo ${firstName}!` : 'Halo!';
-
-    return [
-      greeting,
-      'Aku siap bantu lewat daftar pertanyaan berikut:',
-      '',
-      menuList,
-      '',
-      'Balas dengan angka pilihan, misalnya 1.',
-      'Ketik MENU kapan saja kalau mau lihat daftarnya lagi.',
-    ].join('\n');
+    lines.push(firstName ? `Halo ${firstName}!` : 'Halo!');
+    lines.push('Silakan pilih menu utama yang ingin kamu lihat:');
+  } else if (depth === 0) {
+    lines.push('Silakan pilih menu utama yang tersedia:');
+  } else {
+    lines.push(`Kamu sedang berada di: ${breadcrumb}`);
   }
 
-  return [
-    'Berikut daftar pertanyaan yang tersedia:',
-    '',
-    menuList,
-    '',
-    'Balas dengan angka pilihan, misalnya 1.',
-  ].join('\n');
+  if (currentNode?.intro) {
+    lines.push('');
+    lines.push(currentNode.intro);
+  }
+
+  lines.push('');
+  lines.push(formatMenuList(items, depth > 0));
+  lines.push('');
+
+  if (depth > 0) {
+    lines.push('Balas dengan angka pilihan, atau ketik 0 untuk kembali ke menu utama.');
+  } else {
+    lines.push('Balas dengan angka pilihan.');
+  }
+
+  lines.push('Ketik MENU kapan saja kalau mau mulai lagi dari menu utama.');
+
+  return lines.join('\n');
 }
 
-function buildSelectionReply({ template, selectedMenuNumber }) {
-  return [
-    `Pilihan ${selectedMenuNumber}: ${getTemplateLabel(template)}`,
+function buildAnswerReply({ tree, currentPath, selectedNode, selectedMenuNumber }) {
+  const selectedPath = [...currentPath, selectedMenuNumber - 1];
+  const breadcrumb = getPathLabels(tree, selectedPath).join(' > ');
+  const lines = [
+    `Pilihan ${selectedMenuNumber}: ${breadcrumb}`,
     '',
-    template.answer.trim(),
+    selectedNode.answer,
     '',
-    'Kalau masih mau cek topik lain, balas angka lain atau ketik MENU.',
-  ].join('\n');
-}
+  ];
 
-function buildInvalidSelectionReply(templates) {
-  return [
-    'Nomor itu belum ada di daftar.',
-    'Silakan pilih angka yang tersedia ya.',
-    '',
-    buildMenuMessage({ templates, variant: 'menu' }),
-  ].join('\n');
-}
+  if (currentPath.length > 0) {
+    lines.push('Balas angka lain dari submenu ini, atau ketik 0 untuk kembali ke menu utama.');
+  } else {
+    lines.push('Balas angka lain dari menu utama, atau ketik MENU untuk melihat daftar lagi.');
+  }
 
-function buildRedirectToMenuReply(templates) {
-  return [
-    'Supaya lebih cepat, balas dengan angka dari daftar berikut ya.',
-    '',
-    buildMenuMessage({ templates, variant: 'menu' }),
-  ].join('\n');
+  return lines.join('\n');
 }
 
 function isMenuRequest(messageText) {
@@ -166,29 +376,29 @@ function parseSelectedMenuNumber(messageText) {
   return Number(rawText);
 }
 
-function getTemplateByMenuNumber(templates, selectedMenuNumber) {
-  if (!Number.isInteger(selectedMenuNumber) || selectedMenuNumber < 1) {
-    return null;
+async function ensureBaseFiles() {
+  await fs.ensureDir(QUESTIONS_DIR);
+  await fs.ensureDir(DATA_DIR);
+  await fs.ensureDir(USERS_DIR);
+  await fs.ensureDir(SESSIONS_DIR);
+
+  if (!(await fs.pathExists(TEMPLATE_FILE))) {
+    await fs.writeJson(TEMPLATE_FILE, DEFAULT_TEMPLATES, { spaces: 2 });
   }
 
-  return templates[selectedMenuNumber - 1] || null;
+  if (!(await fs.pathExists(UNMATCHED_FILE))) {
+    await fs.writeJson(UNMATCHED_FILE, [], { spaces: 2 });
+  }
 }
 
-function createUserFilePath(chatId) {
-  return path.join(USERS_DIR, `${sanitizeFileName(chatId)}.json`);
-}
+async function loadTemplates() {
+  const rawTemplates = await fs.readJson(TEMPLATE_FILE);
 
-function createDefaultUserRecord(chatId, contactName) {
-  const now = new Date().toISOString();
+  if (!Array.isArray(rawTemplates)) {
+    throw new Error('questions/templates.json harus berupa array JSON.');
+  }
 
-  return {
-    chatId,
-    contactName: contactName || null,
-    createdAt: now,
-    lastSeenAt: now,
-    state: { ...DEFAULT_USER_STATE },
-    messages: [],
-  };
+  return normalizeMenuTree(rawTemplates);
 }
 
 async function loadUserRecord(chatId, contactName) {
@@ -221,105 +431,26 @@ async function loadUserRecord(chatId, contactName) {
   }
 }
 
-async function ensureBaseFiles() {
-  await fs.ensureDir(QUESTIONS_DIR);
-  await fs.ensureDir(DATA_DIR);
-  await fs.ensureDir(USERS_DIR);
-  await fs.ensureDir(SESSIONS_DIR);
-
-  if (!(await fs.pathExists(TEMPLATE_FILE))) {
-    await fs.writeJson(TEMPLATE_FILE, DEFAULT_TEMPLATES, { spaces: 2 });
-  }
-
-  if (!(await fs.pathExists(UNMATCHED_FILE))) {
-    await fs.writeJson(UNMATCHED_FILE, [], { spaces: 2 });
-  }
-}
-
-async function loadTemplates() {
-  const rawTemplates = await fs.readJson(TEMPLATE_FILE);
-
-  if (!Array.isArray(rawTemplates)) {
-    throw new Error('questions/templates.json harus berupa array JSON.');
-  }
-
-  return rawTemplates
-    .filter(
-      (item) =>
-        item &&
-        typeof item.question === 'string' &&
-        typeof item.answer === 'string',
-    )
-    .map((item, index) => {
-      const question = item.question.trim();
-
-      return {
-        id: item.id || `template-${index + 1}`,
-        label:
-          typeof item.label === 'string' && item.label.trim()
-            ? item.label.trim()
-            : question,
-        question,
-        answer: item.answer.trim(),
-        order: Number.isInteger(item.order) ? item.order : index + 1,
-      };
-    })
-    .sort((firstTemplate, secondTemplate) => firstTemplate.order - secondTemplate.order);
-}
-
 async function getReplyData({ messageText, contactName, userState }) {
   try {
-    const templates = await loadTemplates();
+    const tree = await loadTemplates();
 
-    if (templates.length === 0) {
+    if (tree.length === 0) {
       return {
         status: 'empty',
         replyText: EMPTY_TEMPLATE_REPLY,
-        selectedTemplate: null,
+        selectedNode: null,
         selectedMenuNumber: null,
         shouldSaveUnmatched: false,
-        nextState: { ...userState },
+        nextState: { ...userState, currentPath: [] },
+        activePath: [],
+        activePathLabels: [],
       };
     }
 
+    const now = new Date().toISOString();
+    const currentPath = sanitizePath(tree, userState.currentPath);
     const selectedMenuNumber = parseSelectedMenuNumber(messageText);
-
-    if (selectedMenuNumber !== null) {
-      const selectedTemplate = getTemplateByMenuNumber(templates, selectedMenuNumber);
-
-      if (selectedTemplate) {
-        return {
-          status: 'selected',
-          replyText: buildSelectionReply({ template: selectedTemplate, selectedMenuNumber }),
-          selectedTemplate,
-          selectedMenuNumber,
-          shouldSaveUnmatched: false,
-          nextState: {
-            hasSeenMenu: true,
-            expectsMenuSelection: true,
-            lastMenuShownAt: userState.lastMenuShownAt,
-            lastSelectedMenuNumber: selectedMenuNumber,
-            lastSelectedTemplateId: selectedTemplate.id,
-          },
-        };
-      }
-
-      return {
-        status: 'invalid_selection',
-        replyText: buildInvalidSelectionReply(templates),
-        selectedTemplate: null,
-        selectedMenuNumber,
-        shouldSaveUnmatched: false,
-        nextState: {
-          hasSeenMenu: true,
-          expectsMenuSelection: true,
-          lastMenuShownAt: new Date().toISOString(),
-          lastSelectedMenuNumber: userState.lastSelectedMenuNumber,
-          lastSelectedTemplateId: userState.lastSelectedTemplateId,
-        },
-      };
-    }
-
     const menuRequested = isMenuRequest(messageText);
 
     if (!userState.hasSeenMenu) {
@@ -327,52 +458,180 @@ async function getReplyData({ messageText, contactName, userState }) {
         status: 'welcome_menu',
         replyText: buildMenuMessage({
           contactName,
-          templates,
+          tree,
+          path: [],
           variant: 'welcome',
         }),
-        selectedTemplate: null,
+        selectedNode: null,
         selectedMenuNumber: null,
-        shouldSaveUnmatched: !menuRequested,
+        shouldSaveUnmatched: !menuRequested && selectedMenuNumber === null,
         nextState: {
           hasSeenMenu: true,
-          expectsMenuSelection: true,
-          lastMenuShownAt: new Date().toISOString(),
+          currentPath: [],
+          lastMenuShownAt: now,
           lastSelectedMenuNumber: userState.lastSelectedMenuNumber,
-          lastSelectedTemplateId: userState.lastSelectedTemplateId,
+          lastSelectedNodeId: userState.lastSelectedNodeId,
         },
+        activePath: [],
+        activePathLabels: [],
       };
     }
 
     if (menuRequested) {
       return {
-        status: 'menu',
-        replyText: buildMenuMessage({ templates, variant: 'menu' }),
-        selectedTemplate: null,
+        status: 'main_menu',
+        replyText: buildMenuMessage({
+          contactName,
+          tree,
+          path: [],
+          variant: 'menu',
+        }),
+        selectedNode: null,
         selectedMenuNumber: null,
         shouldSaveUnmatched: false,
         nextState: {
           hasSeenMenu: true,
-          expectsMenuSelection: true,
-          lastMenuShownAt: new Date().toISOString(),
+          currentPath: [],
+          lastMenuShownAt: now,
           lastSelectedMenuNumber: userState.lastSelectedMenuNumber,
-          lastSelectedTemplateId: userState.lastSelectedTemplateId,
+          lastSelectedNodeId: userState.lastSelectedNodeId,
         },
+        activePath: [],
+        activePathLabels: [],
+      };
+    }
+
+    if (selectedMenuNumber === 0) {
+      return {
+        status: 'back_to_main',
+        replyText: buildMenuMessage({
+          contactName,
+          tree,
+          path: [],
+          variant: 'menu',
+          leadText:
+            currentPath.length > 0
+              ? 'Siap, kamu sudah kembali ke menu utama.'
+              : 'Kamu sudah berada di menu utama.',
+        }),
+        selectedNode: null,
+        selectedMenuNumber,
+        shouldSaveUnmatched: false,
+        nextState: {
+          hasSeenMenu: true,
+          currentPath: [],
+          lastMenuShownAt: now,
+          lastSelectedMenuNumber: userState.lastSelectedMenuNumber,
+          lastSelectedNodeId: userState.lastSelectedNodeId,
+        },
+        activePath: [],
+        activePathLabels: [],
+      };
+    }
+
+    if (selectedMenuNumber !== null) {
+      const currentItems = getMenuItems(tree, currentPath);
+      const selectedNode = currentItems[selectedMenuNumber - 1] || null;
+
+      if (!selectedNode) {
+        return {
+          status: 'invalid_selection',
+          replyText: buildMenuMessage({
+            contactName,
+            tree,
+            path: currentPath,
+            variant: 'menu',
+            leadText: 'Nomor itu belum ada di daftar. Coba pilih angka yang tersedia ya.',
+          }),
+          selectedNode: null,
+          selectedMenuNumber,
+          shouldSaveUnmatched: false,
+          nextState: {
+            hasSeenMenu: true,
+            currentPath,
+            lastMenuShownAt: now,
+            lastSelectedMenuNumber: userState.lastSelectedMenuNumber,
+            lastSelectedNodeId: userState.lastSelectedNodeId,
+          },
+          activePath: currentPath,
+          activePathLabels: getPathLabels(tree, currentPath),
+        };
+      }
+
+      if (selectedNode.children.length > 0) {
+        const nextPath = [...currentPath, selectedMenuNumber - 1];
+
+        return {
+          status: 'submenu',
+          replyText: buildMenuMessage({
+            contactName,
+            tree,
+            path: nextPath,
+            variant: 'menu',
+          }),
+          selectedNode,
+          selectedMenuNumber,
+          shouldSaveUnmatched: false,
+          nextState: {
+            hasSeenMenu: true,
+            currentPath: nextPath,
+            lastMenuShownAt: now,
+            lastSelectedMenuNumber: selectedMenuNumber,
+            lastSelectedNodeId: selectedNode.id,
+          },
+          activePath: nextPath,
+          activePathLabels: getPathLabels(tree, nextPath),
+          selectedPath: nextPath,
+          selectedPathLabels: getPathLabels(tree, nextPath),
+        };
+      }
+
+      return {
+        status: 'answer',
+        replyText: buildAnswerReply({
+          tree,
+          currentPath,
+          selectedNode,
+          selectedMenuNumber,
+        }),
+        selectedNode,
+        selectedMenuNumber,
+        shouldSaveUnmatched: false,
+        nextState: {
+          hasSeenMenu: true,
+          currentPath,
+          lastMenuShownAt: userState.lastMenuShownAt,
+          lastSelectedMenuNumber: selectedMenuNumber,
+          lastSelectedNodeId: selectedNode.id,
+        },
+        activePath: currentPath,
+        activePathLabels: getPathLabels(tree, currentPath),
+        selectedPath: [...currentPath, selectedMenuNumber - 1],
+        selectedPathLabels: getPathLabels(tree, [...currentPath, selectedMenuNumber - 1]),
       };
     }
 
     return {
       status: 'menu_redirect',
-      replyText: buildRedirectToMenuReply(templates),
-      selectedTemplate: null,
+      replyText: buildMenuMessage({
+        contactName,
+        tree,
+        path: currentPath,
+        variant: 'menu',
+        leadText: 'Untuk lanjut, balas dengan angka dari menu yang sedang aktif ya.',
+      }),
+      selectedNode: null,
       selectedMenuNumber: null,
       shouldSaveUnmatched: true,
       nextState: {
         hasSeenMenu: true,
-        expectsMenuSelection: true,
-        lastMenuShownAt: new Date().toISOString(),
+        currentPath,
+        lastMenuShownAt: now,
         lastSelectedMenuNumber: userState.lastSelectedMenuNumber,
-        lastSelectedTemplateId: userState.lastSelectedTemplateId,
+        lastSelectedNodeId: userState.lastSelectedNodeId,
       },
+      activePath: currentPath,
+      activePathLabels: getPathLabels(tree, currentPath),
     };
   } catch (error) {
     console.error('Gagal membaca template pertanyaan:', error.message);
@@ -380,10 +639,15 @@ async function getReplyData({ messageText, contactName, userState }) {
     return {
       status: 'template_error',
       replyText: TEMPLATE_ERROR_REPLY,
-      selectedTemplate: null,
+      selectedNode: null,
       selectedMenuNumber: null,
       shouldSaveUnmatched: false,
-      nextState: { ...userState },
+      nextState: {
+        ...DEFAULT_USER_STATE,
+        ...userState,
+      },
+      activePath: Array.isArray(userState.currentPath) ? userState.currentPath : [],
+      activePathLabels: [],
     };
   }
 }
@@ -400,6 +664,7 @@ async function saveUserConversation({
     ...userRecord,
     chatId: message.from,
     contactName: contactName || userRecord.contactName || null,
+    createdAt: userRecord.createdAt || now,
     lastSeenAt: now,
     state: {
       ...DEFAULT_USER_STATE,
@@ -415,8 +680,16 @@ async function saveUserConversation({
     normalizedText: normalizeText(message.body),
     receivedAt: now,
     whatsappTimestamp: message.timestamp || null,
-    selectedTemplateId: replyData.selectedTemplate?.id || null,
-    selectedMenuNumber: replyData.selectedMenuNumber || null,
+    selectedNodeId: replyData.selectedNode?.id || null,
+    selectedMenuNumber: replyData.selectedMenuNumber ?? null,
+    activePath: Array.isArray(replyData.activePath) ? replyData.activePath : [],
+    activePathLabels: Array.isArray(replyData.activePathLabels)
+      ? replyData.activePathLabels
+      : [],
+    selectedPath: Array.isArray(replyData.selectedPath) ? replyData.selectedPath : [],
+    selectedPathLabels: Array.isArray(replyData.selectedPathLabels)
+      ? replyData.selectedPathLabels
+      : [],
     replyText: replyData.replyText,
     status: replyData.status,
   });
@@ -424,7 +697,7 @@ async function saveUserConversation({
   await fs.writeJson(userFile, updatedUserRecord, { spaces: 2 });
 }
 
-async function saveUnmatchedQuestion({ message, contactName }) {
+async function saveUnmatchedQuestion({ message, contactName, activePathLabels }) {
   const now = new Date().toISOString();
   let payload = [];
 
@@ -445,6 +718,7 @@ async function saveUnmatchedQuestion({ message, contactName }) {
     contactName: contactName || null,
     text: message.body,
     normalizedText: normalizeText(message.body),
+    activePathLabels: Array.isArray(activePathLabels) ? activePathLabels : [],
     receivedAt: now,
   });
 
@@ -455,13 +729,7 @@ async function resolveContactName(message) {
   try {
     const contact = await message.getContact();
 
-    return (
-      contact.pushname ||
-      contact.name ||
-      contact.shortName ||
-      contact.id?.user ||
-      null
-    );
+    return contact.pushname || contact.name || contact.shortName || contact.id?.user || null;
   } catch (error) {
     return null;
   }
@@ -509,7 +777,11 @@ async function handleIncomingMessage(message) {
   });
 
   if (replyData.shouldSaveUnmatched) {
-    await saveUnmatchedQuestion({ message, contactName });
+    await saveUnmatchedQuestion({
+      message,
+      contactName,
+      activePathLabels: replyData.activePathLabels,
+    });
   }
 }
 
@@ -523,6 +795,7 @@ function createClient() {
     }),
     puppeteer: {
       headless: process.env.WA_HEADLESS === 'true',
+      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined,
     },
     qrMaxRetries: 0,
   });
@@ -612,7 +885,11 @@ module.exports = {
   buildMenuMessage,
   createClient,
   ensureBaseFiles,
+  getMenuItems,
+  getPathLabels,
   getReplyData,
+  normalizeMenuTree,
   normalizeText,
   parseSelectedMenuNumber,
+  sanitizePath,
 };

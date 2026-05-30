@@ -1,0 +1,816 @@
+{
+  "chatId": "75733175144487@lid",
+  "contactName": "Luthfi Fathurahman",
+  "createdAt": "2026-05-30T03:24:35.531Z",
+  "lastSeenAt": "2026-05-30T03:24:39.211Z",
+  "state": {
+    "hasSeenMenu": true,
+    "currentPath": [],
+    "lastMenuShownAt": "2026-05-30T03:24:39.100Z",
+    "lastSelectedMenuNumber": 1,
+    "lastSelectedNodeId": "jam-hari-kerja"
+  },
+  "messages": [
+    {
+      "messageId": "false_75733175144487@lid_3EB0972AAFF87E3B80A7AB",
+      "text": "p",
+      "normalizedText": "p",
+      "receivedAt": "2026-05-30T03:24:35.726Z",
+      "whatsappTimestamp": 1780043861,
+      "selectedNodeId": null,
+      "selectedMenuNumber": null,
+      "activePath": [],
+      "activePathLabels": [],
+      "selectedPath": [],
+      "selectedPathLabels": [],
+      "replyText": "Halo Luthfi!\nSilakan pilih menu utama yang ingin kamu lihat:\n\n1. Informasi Umum\n2. Pemesanan\n\nBalas dengan angka pilihan.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "welcome_menu"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB0FAB2C454B09BF6EB0F",
+      "text": "menu",
+      "normalizedText": "menu",
+      "receivedAt": "2026-05-30T03:24:35.879Z",
+      "whatsappTimestamp": 1780044160,
+      "selectedNodeId": null,
+      "selectedMenuNumber": null,
+      "activePath": [],
+      "activePathLabels": [],
+      "selectedPath": [],
+      "selectedPathLabels": [],
+      "replyText": "Silakan pilih menu utama yang tersedia:\n\n1. Informasi Umum\n2. Pemesanan\n\nBalas dengan angka pilihan.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "main_menu"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB038EF15BC2118267AA2",
+      "text": "test",
+      "normalizedText": "test",
+      "receivedAt": "2026-05-30T03:24:35.985Z",
+      "whatsappTimestamp": 1780044737,
+      "selectedNodeId": null,
+      "selectedMenuNumber": null,
+      "activePath": [],
+      "activePathLabels": [],
+      "selectedPath": [],
+      "selectedPathLabels": [],
+      "replyText": "Untuk lanjut, balas dengan angka dari menu yang sedang aktif ya.\n\nSilakan pilih menu utama yang tersedia:\n\n1. Informasi Umum\n2. Pemesanan\n\nBalas dengan angka pilihan.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "menu_redirect"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB0A79061DB55879C2200",
+      "text": "1",
+      "normalizedText": "1",
+      "receivedAt": "2026-05-30T03:24:36.066Z",
+      "whatsappTimestamp": 1780044751,
+      "selectedNodeId": "informasi-umum",
+      "selectedMenuNumber": 1,
+      "activePath": [
+        0
+      ],
+      "activePathLabels": [
+        "Informasi Umum"
+      ],
+      "selectedPath": [
+        0
+      ],
+      "selectedPathLabels": [
+        "Informasi Umum"
+      ],
+      "replyText": "Kamu sedang berada di: Informasi Umum\n\n1. Jam Operasional\n2. Lokasi Toko\n0. Kembali ke menu utama\n\nBalas dengan angka pilihan, atau ketik 0 untuk kembali ke menu utama.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "submenu"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB0551B5C61A7A318EE68",
+      "text": "sipol",
+      "normalizedText": "sipol",
+      "receivedAt": "2026-05-30T03:24:36.118Z",
+      "whatsappTimestamp": 1780044759,
+      "selectedNodeId": null,
+      "selectedMenuNumber": null,
+      "activePath": [
+        0
+      ],
+      "activePathLabels": [
+        "Informasi Umum"
+      ],
+      "selectedPath": [],
+      "selectedPathLabels": [],
+      "replyText": "Untuk lanjut, balas dengan angka dari menu yang sedang aktif ya.\n\nKamu sedang berada di: Informasi Umum\n\n1. Jam Operasional\n2. Lokasi Toko\n0. Kembali ke menu utama\n\nBalas dengan angka pilihan, atau ketik 0 untuk kembali ke menu utama.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "menu_redirect"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB0BCF4617E5C00D4ED5D",
+      "text": "3",
+      "normalizedText": "3",
+      "receivedAt": "2026-05-30T03:24:36.165Z",
+      "whatsappTimestamp": 1780044787,
+      "selectedNodeId": null,
+      "selectedMenuNumber": 3,
+      "activePath": [
+        0
+      ],
+      "activePathLabels": [
+        "Informasi Umum"
+      ],
+      "selectedPath": [],
+      "selectedPathLabels": [],
+      "replyText": "Nomor itu belum ada di daftar. Coba pilih angka yang tersedia ya.\n\nKamu sedang berada di: Informasi Umum\n\n1. Jam Operasional\n2. Lokasi Toko\n0. Kembali ke menu utama\n\nBalas dengan angka pilihan, atau ketik 0 untuk kembali ke menu utama.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "invalid_selection"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB0D720CD0A461D244928",
+      "text": "test",
+      "normalizedText": "test",
+      "receivedAt": "2026-05-30T03:24:36.259Z",
+      "whatsappTimestamp": 1780045076,
+      "selectedNodeId": null,
+      "selectedMenuNumber": null,
+      "activePath": [
+        0
+      ],
+      "activePathLabels": [
+        "Informasi Umum"
+      ],
+      "selectedPath": [],
+      "selectedPathLabels": [],
+      "replyText": "Untuk lanjut, balas dengan angka dari menu yang sedang aktif ya.\n\nKamu sedang berada di: Informasi Umum\n\n1. Jam Operasional\n2. Lokasi Toko\n0. Kembali ke menu utama\n\nBalas dengan angka pilihan, atau ketik 0 untuk kembali ke menu utama.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "menu_redirect"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB054729CEDBFC39E1AB6",
+      "text": "1",
+      "normalizedText": "1",
+      "receivedAt": "2026-05-30T03:24:36.311Z",
+      "whatsappTimestamp": 1780045081,
+      "selectedNodeId": "jam-operasional",
+      "selectedMenuNumber": 1,
+      "activePath": [
+        0,
+        0
+      ],
+      "activePathLabels": [
+        "Informasi Umum",
+        "Jam Operasional"
+      ],
+      "selectedPath": [
+        0,
+        0
+      ],
+      "selectedPathLabels": [
+        "Informasi Umum",
+        "Jam Operasional"
+      ],
+      "replyText": "Kamu sedang berada di: Informasi Umum > Jam Operasional\n\nPilih jenis jadwal yang ingin kamu lihat.\n\n1. Hari Kerja\n2. Akhir Pekan\n0. Kembali ke menu utama\n\nBalas dengan angka pilihan, atau ketik 0 untuk kembali ke menu utama.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "submenu"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB09D2E9C52AAB8054C88",
+      "text": "test",
+      "normalizedText": "test",
+      "receivedAt": "2026-05-30T03:24:36.407Z",
+      "whatsappTimestamp": 1780046011,
+      "selectedNodeId": null,
+      "selectedMenuNumber": null,
+      "activePath": [
+        0,
+        0
+      ],
+      "activePathLabels": [
+        "Informasi Umum",
+        "Jam Operasional"
+      ],
+      "selectedPath": [],
+      "selectedPathLabels": [],
+      "replyText": "Untuk lanjut, balas dengan angka dari menu yang sedang aktif ya.\n\nKamu sedang berada di: Informasi Umum > Jam Operasional\n\nPilih jenis jadwal yang ingin kamu lihat.\n\n1. Hari Kerja\n2. Akhir Pekan\n0. Kembali ke menu utama\n\nBalas dengan angka pilihan, atau ketik 0 untuk kembali ke menu utama.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "menu_redirect"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB0C8B9959447FCCF9945",
+      "text": "1",
+      "normalizedText": "1",
+      "receivedAt": "2026-05-30T03:24:36.593Z",
+      "whatsappTimestamp": 1780046027,
+      "selectedNodeId": "jam-hari-kerja",
+      "selectedMenuNumber": 1,
+      "activePath": [
+        0,
+        0
+      ],
+      "activePathLabels": [
+        "Informasi Umum",
+        "Jam Operasional"
+      ],
+      "selectedPath": [
+        0,
+        0,
+        0
+      ],
+      "selectedPathLabels": [
+        "Informasi Umum",
+        "Jam Operasional",
+        "Hari Kerja"
+      ],
+      "replyText": "Pilihan 1: Informasi Umum > Jam Operasional > Hari Kerja\n\nJam operasional kami untuk hari kerja adalah Senin sampai Jumat, pukul 09.00 sampai 17.00 WIB.\n\nBalas angka lain dari submenu ini, atau ketik 0 untuk kembali ke menu utama.",
+      "status": "answer"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB0EBC448A90F8FE45883",
+      "text": "1",
+      "normalizedText": "1",
+      "receivedAt": "2026-05-30T03:24:36.718Z",
+      "whatsappTimestamp": 1780046033,
+      "selectedNodeId": "jam-hari-kerja",
+      "selectedMenuNumber": 1,
+      "activePath": [
+        0,
+        0
+      ],
+      "activePathLabels": [
+        "Informasi Umum",
+        "Jam Operasional"
+      ],
+      "selectedPath": [
+        0,
+        0,
+        0
+      ],
+      "selectedPathLabels": [
+        "Informasi Umum",
+        "Jam Operasional",
+        "Hari Kerja"
+      ],
+      "replyText": "Pilihan 1: Informasi Umum > Jam Operasional > Hari Kerja\n\nJam operasional kami untuk hari kerja adalah Senin sampai Jumat, pukul 09.00 sampai 17.00 WIB.\n\nBalas angka lain dari submenu ini, atau ketik 0 untuk kembali ke menu utama.",
+      "status": "answer"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB0F389CD60F8CBC9C7FD",
+      "text": "0",
+      "normalizedText": "0",
+      "receivedAt": "2026-05-30T03:24:36.792Z",
+      "whatsappTimestamp": 1780046039,
+      "selectedNodeId": null,
+      "selectedMenuNumber": 0,
+      "activePath": [],
+      "activePathLabels": [],
+      "selectedPath": [],
+      "selectedPathLabels": [],
+      "replyText": "Siap, kamu sudah kembali ke menu utama.\n\nSilakan pilih menu utama yang tersedia:\n\n1. Informasi Umum\n2. Pemesanan\n\nBalas dengan angka pilihan.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "back_to_main"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB06957EE47EA31BADA9B",
+      "text": "2",
+      "normalizedText": "2",
+      "receivedAt": "2026-05-30T03:24:37.251Z",
+      "whatsappTimestamp": 1780046839,
+      "selectedNodeId": "pemesanan",
+      "selectedMenuNumber": 2,
+      "activePath": [
+        1
+      ],
+      "activePathLabels": [
+        "Pemesanan"
+      ],
+      "selectedPath": [
+        1
+      ],
+      "selectedPathLabels": [
+        "Pemesanan"
+      ],
+      "replyText": "Kamu sedang berada di: Pemesanan\n\n1. Cara Order\n2. Pembayaran\n0. Kembali ke menu utama\n\nBalas dengan angka pilihan, atau ketik 0 untuk kembali ke menu utama.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "submenu"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB04B1D8DF601E778D821",
+      "text": "1",
+      "normalizedText": "1",
+      "receivedAt": "2026-05-30T03:24:37.289Z",
+      "whatsappTimestamp": 1780046844,
+      "selectedNodeId": "cara-order",
+      "selectedMenuNumber": 1,
+      "activePath": [
+        1,
+        0
+      ],
+      "activePathLabels": [
+        "Pemesanan",
+        "Cara Order"
+      ],
+      "selectedPath": [
+        1,
+        0
+      ],
+      "selectedPathLabels": [
+        "Pemesanan",
+        "Cara Order"
+      ],
+      "replyText": "Kamu sedang berada di: Pemesanan > Cara Order\n\nPilih metode order yang paling sesuai.\n\n1. Order via WhatsApp\n2. Order ke Toko Langsung\n0. Kembali ke menu utama\n\nBalas dengan angka pilihan, atau ketik 0 untuk kembali ke menu utama.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "submenu"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB025987F04BDD4DD2904",
+      "text": "0",
+      "normalizedText": "0",
+      "receivedAt": "2026-05-30T03:24:37.338Z",
+      "whatsappTimestamp": 1780046856,
+      "selectedNodeId": null,
+      "selectedMenuNumber": 0,
+      "activePath": [],
+      "activePathLabels": [],
+      "selectedPath": [],
+      "selectedPathLabels": [],
+      "replyText": "Siap, kamu sudah kembali ke menu utama.\n\nSilakan pilih menu utama yang tersedia:\n\n1. Informasi Umum\n2. Pemesanan\n\nBalas dengan angka pilihan.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "back_to_main"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB018545F6AEE3A08F217",
+      "text": "halo",
+      "normalizedText": "halo",
+      "receivedAt": "2026-05-30T03:24:37.398Z",
+      "whatsappTimestamp": 1780047021,
+      "selectedNodeId": null,
+      "selectedMenuNumber": null,
+      "activePath": [],
+      "activePathLabels": [],
+      "selectedPath": [],
+      "selectedPathLabels": [],
+      "replyText": "Silakan pilih menu utama yang tersedia:\n\n1. Informasi Umum\n2. Pemesanan\n\nBalas dengan angka pilihan.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "main_menu"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB0D199F9C2D7247D1496",
+      "text": "1",
+      "normalizedText": "1",
+      "receivedAt": "2026-05-30T03:24:37.454Z",
+      "whatsappTimestamp": 1780047028,
+      "selectedNodeId": "informasi-umum",
+      "selectedMenuNumber": 1,
+      "activePath": [
+        0
+      ],
+      "activePathLabels": [
+        "Informasi Umum"
+      ],
+      "selectedPath": [
+        0
+      ],
+      "selectedPathLabels": [
+        "Informasi Umum"
+      ],
+      "replyText": "Kamu sedang berada di: Informasi Umum\n\n1. Jam Operasional\n2. Lokasi Toko\n0. Kembali ke menu utama\n\nBalas dengan angka pilihan, atau ketik 0 untuk kembali ke menu utama.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "submenu"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB0C3F96B0F72F61E78E1",
+      "text": "0",
+      "normalizedText": "0",
+      "receivedAt": "2026-05-30T03:24:37.515Z",
+      "whatsappTimestamp": 1780047048,
+      "selectedNodeId": null,
+      "selectedMenuNumber": 0,
+      "activePath": [],
+      "activePathLabels": [],
+      "selectedPath": [],
+      "selectedPathLabels": [],
+      "replyText": "Siap, kamu sudah kembali ke menu utama.\n\nSilakan pilih menu utama yang tersedia:\n\n1. Informasi Umum\n2. Pemesanan\n\nBalas dengan angka pilihan.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "back_to_main"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB0932CA794F5C486C30B",
+      "text": "test",
+      "normalizedText": "test",
+      "receivedAt": "2026-05-30T03:24:37.937Z",
+      "whatsappTimestamp": 1780047512,
+      "selectedNodeId": null,
+      "selectedMenuNumber": null,
+      "activePath": [],
+      "activePathLabels": [],
+      "selectedPath": [],
+      "selectedPathLabels": [],
+      "replyText": "Untuk lanjut, balas dengan angka dari menu yang sedang aktif ya.\n\nSilakan pilih menu utama yang tersedia:\n\n1. Informasi Umum\n2. Pemesanan\n\nBalas dengan angka pilihan.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "menu_redirect"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB0C6D4F739C2136611BE",
+      "text": "3",
+      "normalizedText": "3",
+      "receivedAt": "2026-05-30T03:24:37.996Z",
+      "whatsappTimestamp": 1780047517,
+      "selectedNodeId": null,
+      "selectedMenuNumber": 3,
+      "activePath": [],
+      "activePathLabels": [],
+      "selectedPath": [],
+      "selectedPathLabels": [],
+      "replyText": "Nomor itu belum ada di daftar. Coba pilih angka yang tersedia ya.\n\nSilakan pilih menu utama yang tersedia:\n\n1. Informasi Umum\n2. Pemesanan\n\nBalas dengan angka pilihan.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "invalid_selection"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB0101CC64A4017538B81",
+      "text": "1",
+      "normalizedText": "1",
+      "receivedAt": "2026-05-30T03:24:38.055Z",
+      "whatsappTimestamp": 1780047519,
+      "selectedNodeId": "informasi-umum",
+      "selectedMenuNumber": 1,
+      "activePath": [
+        0
+      ],
+      "activePathLabels": [
+        "Informasi Umum"
+      ],
+      "selectedPath": [
+        0
+      ],
+      "selectedPathLabels": [
+        "Informasi Umum"
+      ],
+      "replyText": "Kamu sedang berada di: Informasi Umum\n\n1. Jam Operasional\n2. Lokasi Toko\n0. Kembali ke menu utama\n\nBalas dengan angka pilihan, atau ketik 0 untuk kembali ke menu utama.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "submenu"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB0D1EA1808AEA81006AE",
+      "text": "0",
+      "normalizedText": "0",
+      "receivedAt": "2026-05-30T03:24:38.117Z",
+      "whatsappTimestamp": 1780047525,
+      "selectedNodeId": null,
+      "selectedMenuNumber": 0,
+      "activePath": [],
+      "activePathLabels": [],
+      "selectedPath": [],
+      "selectedPathLabels": [],
+      "replyText": "Siap, kamu sudah kembali ke menu utama.\n\nSilakan pilih menu utama yang tersedia:\n\n1. Informasi Umum\n2. Pemesanan\n\nBalas dengan angka pilihan.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "back_to_main"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB03BE364976E4677466B",
+      "text": "test",
+      "normalizedText": "test",
+      "receivedAt": "2026-05-30T03:24:38.210Z",
+      "whatsappTimestamp": 1780048029,
+      "selectedNodeId": null,
+      "selectedMenuNumber": null,
+      "activePath": [],
+      "activePathLabels": [],
+      "selectedPath": [],
+      "selectedPathLabels": [],
+      "replyText": "Untuk lanjut, balas dengan angka dari menu yang sedang aktif ya.\n\nSilakan pilih menu utama yang tersedia:\n\n1. Informasi Umum\n2. Pemesanan\n\nBalas dengan angka pilihan.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "menu_redirect"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB007F22A5D02248353C2",
+      "text": "1",
+      "normalizedText": "1",
+      "receivedAt": "2026-05-30T03:24:38.449Z",
+      "whatsappTimestamp": 1780048034,
+      "selectedNodeId": "informasi-umum",
+      "selectedMenuNumber": 1,
+      "activePath": [
+        0
+      ],
+      "activePathLabels": [
+        "Informasi Umum"
+      ],
+      "selectedPath": [
+        0
+      ],
+      "selectedPathLabels": [
+        "Informasi Umum"
+      ],
+      "replyText": "Kamu sedang berada di: Informasi Umum\n\n1. Jam Operasional\n2. Lokasi Toko\n0. Kembali ke menu utama\n\nBalas dengan angka pilihan, atau ketik 0 untuk kembali ke menu utama.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "submenu"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB00F564F00E4B02B3DC9",
+      "text": "1",
+      "normalizedText": "1",
+      "receivedAt": "2026-05-30T03:24:38.494Z",
+      "whatsappTimestamp": 1780048039,
+      "selectedNodeId": "jam-operasional",
+      "selectedMenuNumber": 1,
+      "activePath": [
+        0,
+        0
+      ],
+      "activePathLabels": [
+        "Informasi Umum",
+        "Jam Operasional"
+      ],
+      "selectedPath": [
+        0,
+        0
+      ],
+      "selectedPathLabels": [
+        "Informasi Umum",
+        "Jam Operasional"
+      ],
+      "replyText": "Kamu sedang berada di: Informasi Umum > Jam Operasional\n\nPilih jenis jadwal yang ingin kamu lihat.\n\n1. Hari Kerja\n2. Akhir Pekan\n0. Kembali ke menu utama\n\nBalas dengan angka pilihan, atau ketik 0 untuk kembali ke menu utama.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "submenu"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB000B8BC08C2ED950F2D",
+      "text": "0",
+      "normalizedText": "0",
+      "receivedAt": "2026-05-30T03:24:38.531Z",
+      "whatsappTimestamp": 1780048042,
+      "selectedNodeId": null,
+      "selectedMenuNumber": 0,
+      "activePath": [],
+      "activePathLabels": [],
+      "selectedPath": [],
+      "selectedPathLabels": [],
+      "replyText": "Siap, kamu sudah kembali ke menu utama.\n\nSilakan pilih menu utama yang tersedia:\n\n1. Informasi Umum\n2. Pemesanan\n\nBalas dengan angka pilihan.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "back_to_main"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB0C263BC986CC741D043",
+      "text": "test",
+      "normalizedText": "test",
+      "receivedAt": "2026-05-30T03:24:38.569Z",
+      "whatsappTimestamp": 1780048375,
+      "selectedNodeId": null,
+      "selectedMenuNumber": null,
+      "activePath": [],
+      "activePathLabels": [],
+      "selectedPath": [],
+      "selectedPathLabels": [],
+      "replyText": "Untuk lanjut, balas dengan angka dari menu yang sedang aktif ya.\n\nSilakan pilih menu utama yang tersedia:\n\n1. Informasi Umum\n2. Pemesanan\n\nBalas dengan angka pilihan.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "menu_redirect"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB0E77A324A1B80F6ADC2",
+      "text": "1",
+      "normalizedText": "1",
+      "receivedAt": "2026-05-30T03:24:38.604Z",
+      "whatsappTimestamp": 1780048382,
+      "selectedNodeId": "informasi-umum",
+      "selectedMenuNumber": 1,
+      "activePath": [
+        0
+      ],
+      "activePathLabels": [
+        "Informasi Umum"
+      ],
+      "selectedPath": [
+        0
+      ],
+      "selectedPathLabels": [
+        "Informasi Umum"
+      ],
+      "replyText": "Kamu sedang berada di: Informasi Umum\n\n1. Jam Operasional\n2. Lokasi Toko\n0. Kembali ke menu utama\n\nBalas dengan angka pilihan, atau ketik 0 untuk kembali ke menu utama.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "submenu"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB032BC98E0C4BA529691",
+      "text": "1",
+      "normalizedText": "1",
+      "receivedAt": "2026-05-30T03:24:38.639Z",
+      "whatsappTimestamp": 1780048386,
+      "selectedNodeId": "jam-operasional",
+      "selectedMenuNumber": 1,
+      "activePath": [
+        0,
+        0
+      ],
+      "activePathLabels": [
+        "Informasi Umum",
+        "Jam Operasional"
+      ],
+      "selectedPath": [
+        0,
+        0
+      ],
+      "selectedPathLabels": [
+        "Informasi Umum",
+        "Jam Operasional"
+      ],
+      "replyText": "Kamu sedang berada di: Informasi Umum > Jam Operasional\n\nPilih jenis jadwal yang ingin kamu lihat.\n\n1. Hari Kerja\n2. Akhir Pekan\n0. Kembali ke menu utama\n\nBalas dengan angka pilihan, atau ketik 0 untuk kembali ke menu utama.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "submenu"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB0B2AE51A81764592DCB",
+      "text": "0",
+      "normalizedText": "0",
+      "receivedAt": "2026-05-30T03:24:38.675Z",
+      "whatsappTimestamp": 1780048389,
+      "selectedNodeId": null,
+      "selectedMenuNumber": 0,
+      "activePath": [],
+      "activePathLabels": [],
+      "selectedPath": [],
+      "selectedPathLabels": [],
+      "replyText": "Siap, kamu sudah kembali ke menu utama.\n\nSilakan pilih menu utama yang tersedia:\n\n1. Informasi Umum\n2. Pemesanan\n\nBalas dengan angka pilihan.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "back_to_main"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB08C1065EC8EB43D6095",
+      "text": "1",
+      "normalizedText": "1",
+      "receivedAt": "2026-05-30T03:24:38.709Z",
+      "whatsappTimestamp": 1780048620,
+      "selectedNodeId": "informasi-umum",
+      "selectedMenuNumber": 1,
+      "activePath": [
+        0
+      ],
+      "activePathLabels": [
+        "Informasi Umum"
+      ],
+      "selectedPath": [
+        0
+      ],
+      "selectedPathLabels": [
+        "Informasi Umum"
+      ],
+      "replyText": "Kamu sedang berada di: Informasi Umum\n\n1. Jam Operasional\n2. Lokasi Toko\n0. Kembali ke menu utama\n\nBalas dengan angka pilihan, atau ketik 0 untuk kembali ke menu utama.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "submenu"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB08FD02044CA2DC5EC2F",
+      "text": "1",
+      "normalizedText": "1",
+      "receivedAt": "2026-05-30T03:24:38.753Z",
+      "whatsappTimestamp": 1780048625,
+      "selectedNodeId": "jam-operasional",
+      "selectedMenuNumber": 1,
+      "activePath": [
+        0,
+        0
+      ],
+      "activePathLabels": [
+        "Informasi Umum",
+        "Jam Operasional"
+      ],
+      "selectedPath": [
+        0,
+        0
+      ],
+      "selectedPathLabels": [
+        "Informasi Umum",
+        "Jam Operasional"
+      ],
+      "replyText": "Kamu sedang berada di: Informasi Umum > Jam Operasional\n\nPilih jenis jadwal yang ingin kamu lihat.\n\n1. Hari Kerja\n2. Akhir Pekan\n0. Kembali ke menu utama\n\nBalas dengan angka pilihan, atau ketik 0 untuk kembali ke menu utama.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "submenu"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB092877EE9D64851B061",
+      "text": "0",
+      "normalizedText": "0",
+      "receivedAt": "2026-05-30T03:24:38.787Z",
+      "whatsappTimestamp": 1780048629,
+      "selectedNodeId": null,
+      "selectedMenuNumber": 0,
+      "activePath": [],
+      "activePathLabels": [],
+      "selectedPath": [],
+      "selectedPathLabels": [],
+      "replyText": "Siap, kamu sudah kembali ke menu utama.\n\nSilakan pilih menu utama yang tersedia:\n\n1. Informasi Umum\n2. Pemesanan\n\nBalas dengan angka pilihan.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "back_to_main"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB07636A74C1BDA8F827E",
+      "text": "1",
+      "normalizedText": "1",
+      "receivedAt": "2026-05-30T03:24:38.855Z",
+      "whatsappTimestamp": 1780048959,
+      "selectedNodeId": "informasi-umum",
+      "selectedMenuNumber": 1,
+      "activePath": [
+        0
+      ],
+      "activePathLabels": [
+        "Informasi Umum"
+      ],
+      "selectedPath": [
+        0
+      ],
+      "selectedPathLabels": [
+        "Informasi Umum"
+      ],
+      "replyText": "Kamu sedang berada di: Informasi Umum\n\n1. Jam Operasional\n2. Lokasi Toko\n0. Kembali ke menu utama\n\nBalas dengan angka pilihan, atau ketik 0 untuk kembali ke menu utama.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "submenu"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB0EDD28E75088EC3B1DD",
+      "text": "1",
+      "normalizedText": "1",
+      "receivedAt": "2026-05-30T03:24:38.891Z",
+      "whatsappTimestamp": 1780048964,
+      "selectedNodeId": "jam-operasional",
+      "selectedMenuNumber": 1,
+      "activePath": [
+        0,
+        0
+      ],
+      "activePathLabels": [
+        "Informasi Umum",
+        "Jam Operasional"
+      ],
+      "selectedPath": [
+        0,
+        0
+      ],
+      "selectedPathLabels": [
+        "Informasi Umum",
+        "Jam Operasional"
+      ],
+      "replyText": "Kamu sedang berada di: Informasi Umum > Jam Operasional\n\nPilih jenis jadwal yang ingin kamu lihat.\n\n1. Hari Kerja\n2. Akhir Pekan\n0. Kembali ke menu utama\n\nBalas dengan angka pilihan, atau ketik 0 untuk kembali ke menu utama.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "submenu"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB02E7905CD8A6A62E6AF",
+      "text": "test",
+      "normalizedText": "test",
+      "receivedAt": "2026-05-30T03:24:38.983Z",
+      "whatsappTimestamp": 1780049171,
+      "selectedNodeId": null,
+      "selectedMenuNumber": null,
+      "activePath": [
+        0,
+        0
+      ],
+      "activePathLabels": [
+        "Informasi Umum",
+        "Jam Operasional"
+      ],
+      "selectedPath": [],
+      "selectedPathLabels": [],
+      "replyText": "Untuk lanjut, balas dengan angka dari menu yang sedang aktif ya.\n\nKamu sedang berada di: Informasi Umum > Jam Operasional\n\nPilih jenis jadwal yang ingin kamu lihat.\n\n1. Hari Kerja\n2. Akhir Pekan\n0. Kembali ke menu utama\n\nBalas dengan angka pilihan, atau ketik 0 untuk kembali ke menu utama.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "menu_redirect"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB09639663B8366508F43",
+      "text": "1",
+      "normalizedText": "1",
+      "receivedAt": "2026-05-30T03:24:39.032Z",
+      "whatsappTimestamp": 1780049178,
+      "selectedNodeId": "jam-hari-kerja",
+      "selectedMenuNumber": 1,
+      "activePath": [
+        0,
+        0
+      ],
+      "activePathLabels": [
+        "Informasi Umum",
+        "Jam Operasional"
+      ],
+      "selectedPath": [
+        0,
+        0,
+        0
+      ],
+      "selectedPathLabels": [
+        "Informasi Umum",
+        "Jam Operasional",
+        "Hari Kerja"
+      ],
+      "replyText": "Pilihan 1: Informasi Umum > Jam Operasional > Hari Kerja\n\nJam operasional kami untuk hari kerja adalah Senin sampai Jumat, pukul 09.00 sampai 17.00 WIB.\n\nBalas angka lain dari submenu ini, atau ketik 0 untuk kembali ke menu utama.",
+      "status": "answer"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB0E0673CC2454BB404BB",
+      "text": "1",
+      "normalizedText": "1",
+      "receivedAt": "2026-05-30T03:24:39.082Z",
+      "whatsappTimestamp": 1780049182,
+      "selectedNodeId": "jam-hari-kerja",
+      "selectedMenuNumber": 1,
+      "activePath": [
+        0,
+        0
+      ],
+      "activePathLabels": [
+        "Informasi Umum",
+        "Jam Operasional"
+      ],
+      "selectedPath": [
+        0,
+        0,
+        0
+      ],
+      "selectedPathLabels": [
+        "Informasi Umum",
+        "Jam Operasional",
+        "Hari Kerja"
+      ],
+      "replyText": "Pilihan 1: Informasi Umum > Jam Operasional > Hari Kerja\n\nJam operasional kami untuk hari kerja adalah Senin sampai Jumat, pukul 09.00 sampai 17.00 WIB.\n\nBalas angka lain dari submenu ini, atau ketik 0 untuk kembali ke menu utama.",
+      "status": "answer"
+    },
+    {
+      "messageId": "false_75733175144487@lid_3EB0531580AA06DB7FC33E",
+      "text": "0",
+      "normalizedText": "0",
+      "receivedAt": "2026-05-30T03:24:39.211Z",
+      "whatsappTimestamp": 1780049192,
+      "selectedNodeId": null,
+      "selectedMenuNumber": 0,
+      "activePath": [],
+      "activePathLabels": [],
+      "selectedPath": [],
+      "selectedPathLabels": [],
+      "replyText": "Siap, kamu sudah kembali ke menu utama.\n\nSilakan pilih menu utama yang tersedia:\n\n1. Informasi Umum\n2. Pemesanan\n\nBalas dengan angka pilihan.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "back_to_main"
+    }
+  ]
+}

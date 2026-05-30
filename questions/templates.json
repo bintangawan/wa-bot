@@ -1,8 +1,58 @@
 [
   {
-    "id": "jam-operasional",
-    "label": "Jam operasional",
-    "question": "Jam operasional toko kapan?",
-    "answer": "Jam operasional kami Senin sampai Jumat, pukul 09.00 sampai 17.00 WIB."
+    "id": "informasi-umum",
+    "label": "Informasi Umum",
+    "children": [
+      {
+        "id": "jam-operasional",
+        "label": "Jam Operasional",
+        "intro": "Pilih jenis jadwal yang ingin kamu lihat.",
+        "children": [
+          {
+            "id": "jam-hari-kerja",
+            "label": "Hari Kerja",
+            "answer": "Jam operasional kami untuk hari kerja adalah Senin sampai Jumat, pukul 09.00 sampai 17.00 WIB."
+          },
+          {
+            "id": "jam-akhir-pekan",
+            "label": "Akhir Pekan",
+            "answer": "Untuk saat ini layanan akhir pekan masih tutup. Kalau ada perubahan jadwal, kami akan update lagi ya."
+          }
+        ]
+      },
+      {
+        "id": "lokasi-toko",
+        "label": "Lokasi Toko",
+        "answer": "Toko kami berada di Jalan Contoh No. 123, Jakarta. Kalau perlu titik maps, nanti tinggal dibagikan oleh admin."
+      }
+    ]
+  },
+  {
+    "id": "pemesanan",
+    "label": "Pemesanan",
+    "children": [
+      {
+        "id": "cara-order",
+        "label": "Cara Order",
+        "intro": "Pilih metode order yang paling sesuai.",
+        "children": [
+          {
+            "id": "order-via-whatsapp",
+            "label": "Order via WhatsApp",
+            "answer": "Untuk order via WhatsApp, kirim nama produk, jumlah pesanan, dan alamat lengkap. Setelah itu admin akan bantu proses pesanan kamu."
+          },
+          {
+            "id": "order-ke-toko",
+            "label": "Order ke Toko Langsung",
+            "answer": "Kalau mau order langsung, kamu bisa datang ke toko pada jam operasional. Tim kami akan bantu cek stok dan proses pembelian."
+          }
+        ]
+      },
+      {
+        "id": "pembayaran",
+        "label": "Pembayaran",
+        "answer": "Pembayaran bisa dilakukan melalui transfer bank atau metode lain yang diinformasikan admin saat pesanan diproses."
+      }
+    ]
   }
 ]

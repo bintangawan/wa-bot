@@ -1,0 +1,112 @@
+{
+  "chatId": "278709068165332@lid",
+  "contactName": "Charisma Sianipar",
+  "createdAt": "2026-05-30T03:24:37.596Z",
+  "lastSeenAt": "2026-05-30T03:24:37.889Z",
+  "state": {
+    "hasSeenMenu": true,
+    "currentPath": [
+      1
+    ],
+    "lastMenuShownAt": "2026-05-30T03:24:37.855Z",
+    "lastSelectedMenuNumber": 2,
+    "lastSelectedNodeId": "pemesanan"
+  },
+  "messages": [
+    {
+      "messageId": "false_278709068165332@lid_AC06C64329B70B18CCC7ADCAD9B18A42",
+      "text": "3",
+      "normalizedText": "3",
+      "receivedAt": "2026-05-30T03:24:37.655Z",
+      "whatsappTimestamp": 1780047182,
+      "selectedNodeId": null,
+      "selectedMenuNumber": null,
+      "activePath": [],
+      "activePathLabels": [],
+      "selectedPath": [],
+      "selectedPathLabels": [],
+      "replyText": "Halo Charisma!\nSilakan pilih menu utama yang ingin kamu lihat:\n\n1. Informasi Umum\n2. Pemesanan\n\nBalas dengan angka pilihan.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "welcome_menu"
+    },
+    {
+      "messageId": "false_278709068165332@lid_AC91FADAEA0FE444357ECFD18AD887F3",
+      "text": "1",
+      "normalizedText": "1",
+      "receivedAt": "2026-05-30T03:24:37.724Z",
+      "whatsappTimestamp": 1780047193,
+      "selectedNodeId": "informasi-umum",
+      "selectedMenuNumber": 1,
+      "activePath": [
+        0
+      ],
+      "activePathLabels": [
+        "Informasi Umum"
+      ],
+      "selectedPath": [
+        0
+      ],
+      "selectedPathLabels": [
+        "Informasi Umum"
+      ],
+      "replyText": "Kamu sedang berada di: Informasi Umum\n\n1. Jam Operasional\n2. Lokasi Toko\n0. Kembali ke menu utama\n\nBalas dengan angka pilihan, atau ketik 0 untuk kembali ke menu utama.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "submenu"
+    },
+    {
+      "messageId": "false_278709068165332@lid_ACA1F8900DB53A4E064A41455204EBBA",
+      "text": "Terima kasih",
+      "normalizedText": "terima kasih",
+      "receivedAt": "2026-05-30T03:24:37.780Z",
+      "whatsappTimestamp": 1780047210,
+      "selectedNodeId": null,
+      "selectedMenuNumber": null,
+      "activePath": [
+        0
+      ],
+      "activePathLabels": [
+        "Informasi Umum"
+      ],
+      "selectedPath": [],
+      "selectedPathLabels": [],
+      "replyText": "Untuk lanjut, balas dengan angka dari menu yang sedang aktif ya.\n\nKamu sedang berada di: Informasi Umum\n\n1. Jam Operasional\n2. Lokasi Toko\n0. Kembali ke menu utama\n\nBalas dengan angka pilihan, atau ketik 0 untuk kembali ke menu utama.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "menu_redirect"
+    },
+    {
+      "messageId": "false_278709068165332@lid_ACA10D41246B956F236F72D2206E876D",
+      "text": "0",
+      "normalizedText": "0",
+      "receivedAt": "2026-05-30T03:24:37.837Z",
+      "whatsappTimestamp": 1780047213,
+      "selectedNodeId": null,
+      "selectedMenuNumber": 0,
+      "activePath": [],
+      "activePathLabels": [],
+      "selectedPath": [],
+      "selectedPathLabels": [],
+      "replyText": "Siap, kamu sudah kembali ke menu utama.\n\nSilakan pilih menu utama yang tersedia:\n\n1. Informasi Umum\n2. Pemesanan\n\nBalas dengan angka pilihan.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "back_to_main"
+    },
+    {
+      "messageId": "false_278709068165332@lid_AC22BCE5D91A9B213CBFFB89C4E9523D",
+      "text": "2",
+      "normalizedText": "2",
+      "receivedAt": "2026-05-30T03:24:37.889Z",
+      "whatsappTimestamp": 1780047254,
+      "selectedNodeId": "pemesanan",
+      "selectedMenuNumber": 2,
+      "activePath": [
+        1
+      ],
+      "activePathLabels": [
+        "Pemesanan"
+      ],
+      "selectedPath": [
+        1
+      ],
+      "selectedPathLabels": [
+        "Pemesanan"
+      ],
+      "replyText": "Kamu sedang berada di: Pemesanan\n\n1. Cara Order\n2. Pembayaran\n0. Kembali ke menu utama\n\nBalas dengan angka pilihan, atau ketik 0 untuk kembali ke menu utama.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "submenu"
+    }
+  ]
+}

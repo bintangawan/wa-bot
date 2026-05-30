@@ -2,12 +2,14 @@
   "chatId": "74445087576065@lid",
   "contactName": "Bintang </>",
   "createdAt": "2026-05-29T03:27:46.842Z",
-  "lastSeenAt": "2026-05-29T03:28:48.060Z",
+  "lastSeenAt": "2026-05-30T03:24:57.218Z",
   "state": {
     "hasSeenMenu": true,
+    "currentPath": [],
+    "lastMenuShownAt": "2026-05-30T03:24:57.186Z",
+    "lastSelectedMenuNumber": 2,
+    "lastSelectedNodeId": "pembayaran",
     "expectsMenuSelection": true,
-    "lastMenuShownAt": "2026-05-29T03:28:48.028Z",
-    "lastSelectedMenuNumber": 1,
     "lastSelectedTemplateId": "jam-operasional"
   },
   "messages": [
@@ -54,6 +56,84 @@
       "selectedMenuNumber": null,
       "replyText": "Berikut daftar pertanyaan yang tersedia:\n\n1. Jam operasional\n\nBalas dengan angka pilihan, misalnya 1.",
       "status": "menu"
+    },
+    {
+      "messageId": "false_74445087576065@lid_AC30AF2BB2A6A33BC932DD572B1B4C0A",
+      "text": "h",
+      "normalizedText": "h",
+      "receivedAt": "2026-05-30T03:24:35.455Z",
+      "whatsappTimestamp": 1780029203,
+      "selectedNodeId": null,
+      "selectedMenuNumber": null,
+      "activePath": [],
+      "activePathLabels": [],
+      "selectedPath": [],
+      "selectedPathLabels": [],
+      "replyText": "Untuk lanjut, balas dengan angka dari menu yang sedang aktif ya.\n\nSilakan pilih menu utama yang tersedia:\n\n1. Informasi Umum\n2. Pemesanan\n\nBalas dengan angka pilihan.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "menu_redirect"
+    },
+    {
+      "messageId": "false_74445087576065@lid_ACF86BA0023BD59482F4A3AA00956950",
+      "text": "2",
+      "normalizedText": "2",
+      "receivedAt": "2026-05-30T03:24:49.755Z",
+      "whatsappTimestamp": 1780111488,
+      "selectedNodeId": "pemesanan",
+      "selectedMenuNumber": 2,
+      "activePath": [
+        1
+      ],
+      "activePathLabels": [
+        "Pemesanan"
+      ],
+      "selectedPath": [
+        1
+      ],
+      "selectedPathLabels": [
+        "Pemesanan"
+      ],
+      "replyText": "Kamu sedang berada di: Pemesanan\n\n1. Cara Order\n2. Pembayaran\n0. Kembali ke menu utama\n\nBalas dengan angka pilihan, atau ketik 0 untuk kembali ke menu utama.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "submenu"
+    },
+    {
+      "messageId": "false_74445087576065@lid_AC20C6A09062D4124159800576D4B284",
+      "text": "2",
+      "normalizedText": "2",
+      "receivedAt": "2026-05-30T03:24:52.715Z",
+      "whatsappTimestamp": 1780111491,
+      "selectedNodeId": "pembayaran",
+      "selectedMenuNumber": 2,
+      "activePath": [
+        1
+      ],
+      "activePathLabels": [
+        "Pemesanan"
+      ],
+      "selectedPath": [
+        1,
+        1
+      ],
+      "selectedPathLabels": [
+        "Pemesanan",
+        "Pembayaran"
+      ],
+      "replyText": "Pilihan 2: Pemesanan > Pembayaran\n\nPembayaran bisa dilakukan melalui transfer bank atau metode lain yang diinformasikan admin saat pesanan diproses.\n\nBalas angka lain dari submenu ini, atau ketik 0 untuk kembali ke menu utama.",
+      "status": "answer"
+    },
+    {
+      "messageId": "false_74445087576065@lid_ACD9CF34A8F2E01F32138B2C9FAF784B",
+      "text": "0",
+      "normalizedText": "0",
+      "receivedAt": "2026-05-30T03:24:57.218Z",
+      "whatsappTimestamp": 1780111496,
+      "selectedNodeId": null,
+      "selectedMenuNumber": 0,
+      "activePath": [],
+      "activePathLabels": [],
+      "selectedPath": [],
+      "selectedPathLabels": [],
+      "replyText": "Siap, kamu sudah kembali ke menu utama.\n\nSilakan pilih menu utama yang tersedia:\n\n1. Informasi Umum\n2. Pemesanan\n\nBalas dengan angka pilihan.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "back_to_main"
     }
   ]
 }

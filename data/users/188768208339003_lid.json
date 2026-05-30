@@ -1,0 +1,30 @@
+{
+  "chatId": "188768208339003@lid",
+  "contactName": "Auraa",
+  "createdAt": "2026-05-30T03:24:39.275Z",
+  "lastSeenAt": "2026-05-30T03:24:39.363Z",
+  "state": {
+    "hasSeenMenu": true,
+    "currentPath": [],
+    "lastMenuShownAt": "2026-05-30T03:24:39.276Z",
+    "lastSelectedMenuNumber": null,
+    "lastSelectedNodeId": null
+  },
+  "messages": [
+    {
+      "messageId": "false_188768208339003@lid_3ADFD000FF7F136CFA56",
+      "text": "halo",
+      "normalizedText": "halo",
+      "receivedAt": "2026-05-30T03:24:39.363Z",
+      "whatsappTimestamp": 1780051624,
+      "selectedNodeId": null,
+      "selectedMenuNumber": null,
+      "activePath": [],
+      "activePathLabels": [],
+      "selectedPath": [],
+      "selectedPathLabels": [],
+      "replyText": "Halo Auraa!\nSilakan pilih menu utama yang ingin kamu lihat:\n\n1. Informasi Umum\n2. Pemesanan\n\nBalas dengan angka pilihan.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "welcome_menu"
+    }
+  ]
+}

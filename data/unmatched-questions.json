@@ -5,5 +5,123 @@
     "text": "meny",
     "normalizedText": "meny",
     "receivedAt": "2026-05-29T03:28:45.159Z"
+  },
+  {
+    "chatId": "74445087576065@lid",
+    "contactName": "Bintang </>",
+    "text": "h",
+    "normalizedText": "h",
+    "activePathLabels": [],
+    "receivedAt": "2026-05-30T03:24:35.456Z"
+  },
+  {
+    "chatId": "75733175144487@lid",
+    "contactName": "Luthfi Fathurahman",
+    "text": "p",
+    "normalizedText": "p",
+    "activePathLabels": [],
+    "receivedAt": "2026-05-30T03:24:35.727Z"
+  },
+  {
+    "chatId": "75733175144487@lid",
+    "contactName": "Luthfi Fathurahman",
+    "text": "test",
+    "normalizedText": "test",
+    "activePathLabels": [],
+    "receivedAt": "2026-05-30T03:24:35.985Z"
+  },
+  {
+    "chatId": "75733175144487@lid",
+    "contactName": "Luthfi Fathurahman",
+    "text": "sipol",
+    "normalizedText": "sipol",
+    "activePathLabels": [
+      "Informasi Umum"
+    ],
+    "receivedAt": "2026-05-30T03:24:36.119Z"
+  },
+  {
+    "chatId": "75733175144487@lid",
+    "contactName": "Luthfi Fathurahman",
+    "text": "test",
+    "normalizedText": "test",
+    "activePathLabels": [
+      "Informasi Umum"
+    ],
+    "receivedAt": "2026-05-30T03:24:36.221Z"
+  },
+  {
+    "chatId": "75733175144487@lid",
+    "contactName": "Luthfi Fathurahman",
+    "text": "test",
+    "normalizedText": "test",
+    "activePathLabels": [
+      "Informasi Umum"
+    ],
+    "receivedAt": "2026-05-30T03:24:36.259Z"
+  },
+  {
+    "chatId": "75733175144487@lid",
+    "contactName": "Luthfi Fathurahman",
+    "text": "test",
+    "normalizedText": "test",
+    "activePathLabels": [
+      "Informasi Umum",
+      "Jam Operasional"
+    ],
+    "receivedAt": "2026-05-30T03:24:36.408Z"
+  },
+  {
+    "chatId": "48795257700384@lid",
+    "contactName": "Christyyyyy",
+    "text": "Crot",
+    "normalizedText": "crot",
+    "activePathLabels": [],
+    "receivedAt": "2026-05-30T03:24:37.073Z"
+  },
+  {
+    "chatId": "278709068165332@lid",
+    "contactName": "Charisma Sianipar",
+    "text": "Terima kasih",
+    "normalizedText": "terima kasih",
+    "activePathLabels": [
+      "Informasi Umum"
+    ],
+    "receivedAt": "2026-05-30T03:24:37.780Z"
+  },
+  {
+    "chatId": "75733175144487@lid",
+    "contactName": "Luthfi Fathurahman",
+    "text": "test",
+    "normalizedText": "test",
+    "activePathLabels": [],
+    "receivedAt": "2026-05-30T03:24:37.938Z"
+  },
+  {
+    "chatId": "75733175144487@lid",
+    "contactName": "Luthfi Fathurahman",
+    "text": "test",
+    "normalizedText": "test",
+    "activePathLabels": [],
+    "receivedAt": "2026-05-30T03:24:38.210Z"
+  },
+  {
+    "chatId": "75733175144487@lid",
+    "contactName": "Luthfi Fathurahman",
+    "text": "test",
+    "normalizedText": "test",
+    "activePathLabels": [],
+    "receivedAt": "2026-05-30T03:24:38.570Z"
+  },
+  {
+    "chatId": "75733175144487@lid",
+    "contactName": "Luthfi Fathurahman",
+    "text": "test",
+    "normalizedText": "test",
+    "activePathLabels": [
+      "Informasi Umum",
+      "Jam Operasional"
+    ],
+    "receivedAt": "2026-05-30T03:24:38.984Z"
   }
 ]
