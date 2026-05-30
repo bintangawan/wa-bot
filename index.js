@@ -198,6 +198,28 @@ function createUserFilePath(chatId) {
   return path.join(USERS_DIR, `${sanitizeFileName(chatId)}.json`);
 }
 
+async function resolveExistingUserFilePath(chatId, legacyChatIds = []) {
+  const primaryFile = createUserFilePath(chatId);
+
+  if (await fs.pathExists(primaryFile)) {
+    return primaryFile;
+  }
+
+  for (const legacyChatId of legacyChatIds) {
+    if (!legacyChatId || legacyChatId === chatId) {
+      continue;
+    }
+
+    const legacyFile = createUserFilePath(legacyChatId);
+
+    if (await fs.pathExists(legacyFile)) {
+      return legacyFile;
+    }
+  }
+
+  return primaryFile;
+}
+
 function createDefaultUserRecord(chatId, contactName) {
   const now = new Date().toISOString();
 
@@ -401,8 +423,8 @@ async function loadTemplates() {
   return normalizeMenuTree(rawTemplates);
 }
 
-async function loadUserRecord(chatId, contactName) {
-  const userFile = createUserFilePath(chatId);
+async function loadUserRecord(chatId, contactName, legacyChatIds = []) {
+  const userFile = await resolveExistingUserFilePath(chatId, legacyChatIds);
 
   if (!(await fs.pathExists(userFile))) {
     return createDefaultUserRecord(chatId, contactName);
@@ -655,14 +677,16 @@ async function getReplyData({ messageText, contactName, userState }) {
 async function saveUserConversation({
   userRecord,
   message,
+  chatId,
   contactName,
   replyData,
 }) {
-  const userFile = createUserFilePath(message.from);
+  const effectiveChatId = chatId || message.from;
+  const userFile = createUserFilePath(effectiveChatId);
   const now = new Date().toISOString();
   const updatedUserRecord = {
     ...userRecord,
-    chatId: message.from,
+    chatId: effectiveChatId,
     contactName: contactName || userRecord.contactName || null,
     createdAt: userRecord.createdAt || now,
     lastSeenAt: now,
@@ -676,6 +700,7 @@ async function saveUserConversation({
 
   updatedUserRecord.messages.push({
     messageId: message.id?._serialized || null,
+    sourceChatId: message.from,
     text: message.body,
     normalizedText: normalizeText(message.body),
     receivedAt: now,
@@ -697,7 +722,7 @@ async function saveUserConversation({
   await fs.writeJson(userFile, updatedUserRecord, { spaces: 2 });
 }
 
-async function saveUnmatchedQuestion({ message, contactName, activePathLabels }) {
+async function saveUnmatchedQuestion({ message, chatId, contactName, activePathLabels }) {
   const now = new Date().toISOString();
   let payload = [];
 
@@ -714,7 +739,8 @@ async function saveUnmatchedQuestion({ message, contactName, activePathLabels })
   }
 
   payload.push({
-    chatId: message.from,
+    chatId: chatId || message.from,
+    sourceChatId: message.from,
     contactName: contactName || null,
     text: message.body,
     normalizedText: normalizeText(message.body),
@@ -733,6 +759,33 @@ async function resolveContactName(message) {
   } catch (error) {
     return null;
   }
+}
+
+async function resolveStableChatId(message) {
+  const incomingChatId = message.from;
+
+  if (!incomingChatId || !incomingChatId.endsWith('@lid')) {
+    return incomingChatId;
+  }
+
+  try {
+    const mappings = await message.client.getContactLidAndPhone([incomingChatId]);
+    const stableChatId = mappings?.[0]?.pn;
+
+    return stableChatId || incomingChatId;
+  } catch (error) {
+    console.warn(`Gagal menormalkan chat ID ${incomingChatId}: ${error.message}`);
+    return incomingChatId;
+  }
+}
+
+async function replyToIncomingMessage(message, chatId, replyText) {
+  if (!chatId || chatId === message.from) {
+    await message.reply(replyText);
+    return;
+  }
+
+  await message.client.sendMessage(chatId, replyText);
 }
 
 async function handleIncomingMessage(message) {
@@ -757,9 +810,14 @@ async function handleIncomingMessage(message) {
   }
 
   const contactName = await resolveContactName(message);
-  const userRecord = await loadUserRecord(message.from, contactName);
+  const stableChatId = await resolveStableChatId(message);
+  const userRecord = await loadUserRecord(stableChatId, contactName, [message.from]);
 
-  console.log(`[MSG] ${contactName || message.from}: ${message.body}`);
+  console.log(
+    `[MSG] ${contactName || stableChatId}: ${message.body} (${message.from}${
+      stableChatId !== message.from ? ` -> ${stableChatId}` : ''
+    })`,
+  );
 
   const replyData = await getReplyData({
     messageText: message.body,
@@ -767,11 +825,12 @@ async function handleIncomingMessage(message) {
     userState: userRecord.state,
   });
 
-  await message.reply(replyData.replyText);
+  await replyToIncomingMessage(message, stableChatId, replyData.replyText);
 
   await saveUserConversation({
     userRecord,
     message,
+    chatId: stableChatId,
     contactName,
     replyData,
   });
@@ -779,6 +838,7 @@ async function handleIncomingMessage(message) {
   if (replyData.shouldSaveUnmatched) {
     await saveUnmatchedQuestion({
       message,
+      chatId: stableChatId,
       contactName,
       activePathLabels: replyData.activePathLabels,
     });

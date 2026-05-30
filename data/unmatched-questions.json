@@ -123,5 +123,23 @@
       "Jam Operasional"
     ],
     "receivedAt": "2026-05-30T03:24:38.984Z"
+  },
+  {
+    "chatId": "6281343765258@c.us",
+    "sourceChatId": "75733175144487@lid",
+    "contactName": "Bang Luthfi",
+    "text": ".",
+    "normalizedText": "",
+    "activePathLabels": [],
+    "receivedAt": "2026-05-30T07:50:38.643Z"
+  },
+  {
+    "chatId": "6287841185404@c.us",
+    "sourceChatId": "74445087576065@lid",
+    "contactName": "Bintang </>",
+    "text": ".",
+    "normalizedText": "",
+    "activePathLabels": [],
+    "receivedAt": "2026-05-30T07:55:53.801Z"
   }
 ]

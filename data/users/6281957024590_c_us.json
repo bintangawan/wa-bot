@@ -1,0 +1,129 @@
+{
+  "chatId": "6281957024590@c.us",
+  "contactName": "starstarstar",
+  "createdAt": "2026-05-30T07:59:01.607Z",
+  "lastSeenAt": "2026-05-30T07:59:17.392Z",
+  "state": {
+    "hasSeenMenu": true,
+    "currentPath": [],
+    "lastMenuShownAt": "2026-05-30T07:59:17.143Z",
+    "lastSelectedMenuNumber": 1,
+    "lastSelectedNodeId": "order-via-whatsapp"
+  },
+  "messages": [
+    {
+      "messageId": "false_190069616992334@lid_AC72BA3A156E5D0B07B0DFAF2B8A0E56",
+      "sourceChatId": "190069616992334@lid",
+      "text": "halo",
+      "normalizedText": "halo",
+      "receivedAt": "2026-05-30T07:59:01.882Z",
+      "whatsappTimestamp": 1780127939,
+      "selectedNodeId": null,
+      "selectedMenuNumber": null,
+      "activePath": [],
+      "activePathLabels": [],
+      "selectedPath": [],
+      "selectedPathLabels": [],
+      "replyText": "Halo starstarstar!\nSilakan pilih menu utama yang ingin kamu lihat:\n\n1. Informasi Umum\n2. Pemesanan\n\nBalas dengan angka pilihan.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "welcome_menu"
+    },
+    {
+      "messageId": "false_190069616992334@lid_ACFC15B8E63343919974AE4BA92E67E9",
+      "sourceChatId": "190069616992334@lid",
+      "text": "2",
+      "normalizedText": "2",
+      "receivedAt": "2026-05-30T07:59:08.475Z",
+      "whatsappTimestamp": 1780127947,
+      "selectedNodeId": "pemesanan",
+      "selectedMenuNumber": 2,
+      "activePath": [
+        1
+      ],
+      "activePathLabels": [
+        "Pemesanan"
+      ],
+      "selectedPath": [
+        1
+      ],
+      "selectedPathLabels": [
+        "Pemesanan"
+      ],
+      "replyText": "Kamu sedang berada di: Pemesanan\n\n1. Cara Order\n2. Pembayaran\n0. Kembali ke menu utama\n\nBalas dengan angka pilihan, atau ketik 0 untuk kembali ke menu utama.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "submenu"
+    },
+    {
+      "messageId": "false_190069616992334@lid_AC1684E4F74D9620320D3A8912A3CD3A",
+      "sourceChatId": "190069616992334@lid",
+      "text": "1",
+      "normalizedText": "1",
+      "receivedAt": "2026-05-30T07:59:11.061Z",
+      "whatsappTimestamp": 1780127950,
+      "selectedNodeId": "cara-order",
+      "selectedMenuNumber": 1,
+      "activePath": [
+        1,
+        0
+      ],
+      "activePathLabels": [
+        "Pemesanan",
+        "Cara Order"
+      ],
+      "selectedPath": [
+        1,
+        0
+      ],
+      "selectedPathLabels": [
+        "Pemesanan",
+        "Cara Order"
+      ],
+      "replyText": "Kamu sedang berada di: Pemesanan > Cara Order\n\nPilih metode order yang paling sesuai.\n\n1. Order via WhatsApp\n2. Order ke Toko Langsung\n0. Kembali ke menu utama\n\nBalas dengan angka pilihan, atau ketik 0 untuk kembali ke menu utama.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "submenu"
+    },
+    {
+      "messageId": "false_190069616992334@lid_AC64271B1C2E8D8F1542AF617A0606DB",
+      "sourceChatId": "190069616992334@lid",
+      "text": "1",
+      "normalizedText": "1",
+      "receivedAt": "2026-05-30T07:59:13.873Z",
+      "whatsappTimestamp": 1780127953,
+      "selectedNodeId": "order-via-whatsapp",
+      "selectedMenuNumber": 1,
+      "activePath": [
+        1,
+        0
+      ],
+      "activePathLabels": [
+        "Pemesanan",
+        "Cara Order"
+      ],
+      "selectedPath": [
+        1,
+        0,
+        0
+      ],
+      "selectedPathLabels": [
+        "Pemesanan",
+        "Cara Order",
+        "Order via WhatsApp"
+      ],
+      "replyText": "Pilihan 1: Pemesanan > Cara Order > Order via WhatsApp\n\nUntuk order via WhatsApp, kirim nama produk, jumlah pesanan, dan alamat lengkap. Setelah itu admin akan bantu proses pesanan kamu.\n\nBalas angka lain dari submenu ini, atau ketik 0 untuk kembali ke menu utama.",
+      "status": "answer"
+    },
+    {
+      "messageId": "false_190069616992334@lid_ACCAF555E2BC6E93173C38D34F637281",
+      "sourceChatId": "190069616992334@lid",
+      "text": "0",
+      "normalizedText": "0",
+      "receivedAt": "2026-05-30T07:59:17.392Z",
+      "whatsappTimestamp": 1780127956,
+      "selectedNodeId": null,
+      "selectedMenuNumber": 0,
+      "activePath": [],
+      "activePathLabels": [],
+      "selectedPath": [],
+      "selectedPathLabels": [],
+      "replyText": "Siap, kamu sudah kembali ke menu utama.\n\nSilakan pilih menu utama yang tersedia:\n\n1. Informasi Umum\n2. Pemesanan\n\nBalas dengan angka pilihan.\nKetik MENU kapan saja kalau mau mulai lagi dari menu utama.",
+      "status": "back_to_main"
+    }
+  ]
+}
